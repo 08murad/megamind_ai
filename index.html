@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MegaMind AI Limited Company</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF3FA;--surface:#fff;--ink:#0F1E3D;--muted:#4C5B78;--line:#D3DDEC;--accent:#F2A93B;--accent-ink:#0F1E3D;--jade:#14876B;--hero:#0F1E3D;--hero-ink:#F4F7FC;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A1226;--surface:#121C36;--ink:#EAF0FA;--muted:#9FB0CC;--line:#243256;--jade:#3CCBA4;--hero:#0D1730;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0A1226;--surface:#121C36;--ink:#EAF0FA;--muted:#9FB0CC;--line:#243256;--jade:#3CCBA4;--hero:#0D1730;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 "Hind Siliguri",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Hind Siliguri",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:20;background:var(--hero);color:var(--hero-ink)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font:800 20px "Bricolage Grotesque",sans-serif;text-decoration:none}
+.logo span{color:var(--accent)}
+nav{display:flex;gap:22px;align-items:center}
+nav a{text-decoration:none;font-size:15px;opacity:.85}
+nav a:hover{opacity:1}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);font:600 16px "Hind Siliguri",sans-serif;padding:12px 22px;border-radius:8px;border:0;text-decoration:none;cursor:pointer}
+.btn:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,.chip:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn.alt{background:transparent;color:inherit;border:1.5px solid currentColor}
+.hero{background:var(--hero);color:var(--hero-ink);padding:56px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(34px,5.2vw,58px);font-weight:800;letter-spacing:-.02em}
+.hero p{font-size:19px;color:#C5D2E8;max-width:34em;margin:18px 0 26px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.chat{background:var(--surface);color:var(--ink);border-radius:14px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.chat-top{padding:12px 16px;border-bottom:1px solid var(--line);font-weight:600;display:flex;gap:8px;align-items:center}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--jade)}
+.msgs{height:min(270px,42vh);overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:85%;padding:9px 13px;border-radius:12px;font-size:15.5px;line-height:1.5}
+.m.bot{background:var(--bg);align-self:flex-start;border-bottom-left-radius:3px}
+.m.me{background:var(--jade);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 14px 14px}
+.chip{background:transparent;color:var(--ink);border:1.5px solid var(--line);border-radius:20px;padding:5px 13px;font:500 14px "Hind Siliguri",sans-serif;cursor:pointer}
+.chip:hover{border-color:var(--jade)}
+section{padding:72px 0}
+.sec-h{max-width:640px;margin-bottom:34px}
+.sec-h h2{font-size:clamp(28px,3.8vw,40px);font-weight:800;letter-spacing:-.015em}
+.sec-h p{color:var(--muted);margin:12px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px}
+.card h3{font-size:21px;margin-bottom:10px}
+.card ul{margin:0;padding-left:18px;color:var(--muted);font-size:15.5px}
+.card.lead{grid-column:span 2;border-color:var(--jade);border-width:2px}
+.tag{display:inline-block;background:var(--accent);color:var(--accent-ink);font:600 13px "Hind Siliguri",sans-serif;padding:2px 10px;border-radius:12px;margin-bottom:12px}
+.band{background:var(--surface);border-block:1px solid var(--line)}
+.price{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.plan{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:26px;display:flex;flex-direction:column}
+.plan.pop{border:2px solid var(--accent)}
+.plan h3{font-size:22px}
+.amt{font:800 32px "Bricolage Grotesque",sans-serif;margin:10px 0 2px}
+.amt small{font:400 15px "Hind Siliguri",sans-serif;color:var(--muted)}
+.plan ul{padding-left:18px;margin:14px 0 20px;color:var(--muted);font-size:15.5px;flex:1}
+.plan .btn{text-align:center}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s;padding:0;list-style:none;margin:0}
+.steps li{counter-increment:s;border-top:3px solid var(--jade);padding-top:14px}
+.steps li::before{content:counter(s);font:800 28px "Bricolage Grotesque",sans-serif;color:var(--jade);display:block}
+.steps b{display:block;font-size:18px;margin:2px 0 4px}
+.steps span{color:var(--muted);font-size:15.5px}
+form{display:grid;gap:14px;max-width:560px}
+label{font-weight:600;font-size:15px;display:grid;gap:5px}
+input,textarea,select{font:inherit;padding:11px 13px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);width:100%}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.note{color:var(--muted);font-size:15px}
+footer{background:var(--hero);color:#C5D2E8;padding:34px 0;font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.hero{position:relative;overflow:hidden}.hero .wrap{position:relative}
+#net{position:absolute;inset:0;width:100%;height:100%}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:40}
+.tw{color:var(--accent);font-weight:600}.tw::after{content:"|";margin-left:2px;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.cf{display:flex;gap:8px;padding:0 14px 14px;max-width:none}.cf .btn{padding:8px 16px}
+.typing i{display:inline-block;width:6px;height:6px;margin:0 2px;border-radius:50%;background:var(--muted);animation:bl 1s infinite}.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+.stat-row{background:var(--surface);border-bottom:1px solid var(--line)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding-top:26px;padding-bottom:26px}
+.stat b{display:block;font:800 40px "Bricolage Grotesque",sans-serif;color:var(--jade)}.stat span{color:var(--muted);font-size:15px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s,box-shadow .2s,border-color .2s}.rv.in{opacity:1;transform:none}
+.card,.plan{background-image:radial-gradient(260px circle at var(--mx,50%) var(--my,-60%),rgba(20,135,107,.18),transparent)}
+.card.in:hover,.plan.in:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(15,30,61,.16)}
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px;display:grid;gap:20px;max-width:640px}
+.calc input{accent-color:var(--jade);padding:0}
+.out{background:var(--hero);color:var(--hero-ink);border-radius:8px;padding:18px 22px}
+.out strong{display:block;font:800 clamp(34px,6vw,52px) "Bricolage Grotesque",sans-serif;color:var(--accent)}
+.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;transition:transform .2s}
+.ib{background:transparent;border:0;color:inherit;width:38px;height:38px;border-radius:8px;display:inline-grid;place-items:center;cursor:pointer;font-size:20px}.ib:hover{background:rgba(255,255,255,.12)}.ib:focus-visible{outline:3px solid var(--accent)}.mb{display:none}
+.ico{width:44px;height:44px;border-radius:10px;background:rgba(20,135,107,.14);color:var(--jade);display:grid;place-items:center;margin-bottom:12px;font-size:24px}
+.g4{grid-template-columns:repeat(4,1fr)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-bottom:10px}
+summary{cursor:pointer;list-style:none;padding:16px 20px;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:12px}summary::-webkit-details-marker{display:none}
+details[open] summary .i{transform:rotate(45deg)}details p{margin:0;padding:0 20px 18px;color:var(--muted)}
+.ct{list-style:none;padding:0;margin:18px 0 0}.ct li{display:flex;gap:10px;align-items:center;margin:10px 0}.ct .i{color:var(--jade);font-size:20px}
+.fab{position:fixed;right:20px;width:52px;height:52px;border-radius:50%;border:0;display:grid;place-items:center;font-size:26px;cursor:pointer;z-index:30;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.28)}
+.wa{bottom:calc(20px + env(safe-area-inset-bottom,0px));background:#1FAF53;color:#fff}.wa::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #1FAF53;animation:pg 2s infinite}
+@keyframes pg{to{transform:scale(1.6);opacity:0}}
+.up{bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--surface);color:var(--ink);border:1px solid var(--line);opacity:0;pointer-events:none;transition:opacity .25s}.up.show{opacity:1;pointer-events:auto}
+.mq{background:var(--hero);overflow:hidden;padding:14px 0;border-top:1px solid rgba(255,255,255,.1)}
+.mt{display:flex;width:max-content;animation:mqa 32s linear infinite}.mq:hover .mt{animation-play-state:paused}
+.mt span{color:#C5D2E8;border:1px solid rgba(255,255,255,.22);padding:4px 16px;border-radius:20px;font-size:15px;white-space:nowrap;margin-right:14px}
+@keyframes mqa{to{transform:translateX(-50%)}}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{font:600 15px "Hind Siliguri",sans-serif;padding:9px 18px;border-radius:20px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;transition:background .2s,color .2s}
+.tabs button:hover{border-color:var(--jade)}.tabs button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tabs button[aria-selected=true]{background:var(--jade);border-color:var(--jade);color:#fff}
+.pane{display:none;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:26px;max-width:760px}
+.pane.on{display:block;animation:pi .45s}@keyframes pi{from{opacity:0;transform:translateY(10px)}}
+.ck{list-style:none;padding:0;margin:14px 0 0}.ck li{display:flex;gap:10px;margin:10px 0}.ck .i{color:var(--jade);margin-top:6px}
+nav a.on{opacity:1;color:var(--accent)}
+#pl{position:fixed;inset:0;z-index:100;background:var(--hero);display:grid;place-items:center;transition:opacity .6s;animation:pf .4s 3s forwards}
+#pl span{font:800 34px "Bricolage Grotesque",sans-serif;color:#fff;animation:pp 1s ease-in-out infinite alternate}#pl b{color:var(--accent)}
+#pl.gone{opacity:0;pointer-events:none}@keyframes pp{from{opacity:.4;transform:scale(.96)}}@keyframes pf{to{opacity:0;visibility:hidden}}
+.fc{line-height:1.9}.fc b{color:#fff}.fc a{color:#C5D2E8;text-decoration:none}.fc a:hover{color:var(--accent)}
+[hidden]{display:none!important}
+.nb{background:transparent;border:1.5px solid rgba(255,255,255,.35);color:inherit;border-radius:8px;padding:7px 14px;font:500 15px "Hind Siliguri",sans-serif;cursor:pointer;display:inline-flex;gap:6px;align-items:center}.nb:hover{border-color:var(--accent)}.nb:focus-visible{outline:3px solid var(--accent)}
+.hero h1{max-width:17em}
+.cb{bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--jade);color:#fff}.up{bottom:calc(148px + env(safe-area-inset-bottom,0px))}
+.nudge{position:fixed;right:84px;bottom:calc(96px + env(safe-area-inset-bottom,0px));background:var(--surface);color:var(--ink);border:1px solid var(--line);padding:6px 14px;border-radius:18px;font-size:14px;z-index:30;opacity:0;pointer-events:none;transition:opacity .4s;box-shadow:0 6px 16px rgba(0,0,0,.18)}.nudge.show{opacity:1}
+.chat.pop{position:fixed;right:84px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:min(370px,calc(100vw - 32px));z-index:35;opacity:0;transform:scale(.92) translateY(16px);transform-origin:bottom right;pointer-events:none;transition:opacity .25s,transform .25s}.chat.pop.open{opacity:1;transform:none;pointer-events:auto}
+.xc{margin-left:auto;color:var(--ink);width:30px;height:30px;font-size:18px}.xc:hover{background:var(--bg)}
+#app{position:fixed;inset:0;z-index:70;background:var(--bg);display:none;overflow:auto}#app.on{display:block}
+.lc{position:relative;max-width:420px;margin:8vh auto;padding:30px;background:var(--surface);border:1px solid var(--line);border-radius:12px;display:grid;gap:14px}.lc h2{font-size:28px}.lc form{max-width:none}.lc p{margin:0}.xc2{position:absolute;top:10px;right:10px;color:var(--ink)}.xc2:hover{background:var(--bg)}
+.dash{display:grid;grid-template-columns:230px 1fr;min-height:100%}
+.sd{background:var(--hero);color:#fff;padding:20px 14px;display:flex;flex-direction:column;gap:4px}.lg2{font:800 20px "Bricolage Grotesque",sans-serif;margin:0 8px 18px}.lg2 span{color:var(--accent)}
+.sd button{background:transparent;border:0;color:#C5D2E8;font:500 16px "Hind Siliguri",sans-serif;display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:8px;cursor:pointer;text-align:left}.sd button:hover,.sd button.on{background:rgba(255,255,255,.12);color:#fff}.sd button:focus-visible{outline:3px solid var(--accent)}.sd .i{font-size:20px}#lo{margin-top:auto}
+.mn{padding:28px;min-width:0}.mn h2{font-size:30px}.mn h3{margin:26px 0 12px;font-size:20px}
+.vw{display:none;margin-top:18px}.vw.on{display:block;animation:pi .4s}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}.k{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}.k b{display:block;font:800 32px "Bricolage Grotesque",sans-serif;color:var(--jade)}.k span{color:var(--muted);font-size:15px}
+.bars{display:flex;gap:10px;align-items:flex-end;height:190px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px}.b{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;font-size:13px;color:var(--muted)}.b em{font-style:normal}.b i{width:100%;max-width:48px;background:var(--jade);border-radius:6px 6px 0 0;height:0;transition:height .9s}
+.pr{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:12px;display:grid;grid-template-columns:1fr auto;gap:10px}.pg{grid-column:1/-1;height:8px;background:var(--line);border-radius:4px;overflow:hidden}.pg i{display:block;height:100%;width:0;background:var(--jade);transition:width 1s}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line)}th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+.st{font-style:normal;font-size:13px;font-weight:600;padding:2px 10px;border-radius:12px;background:var(--accent);color:var(--accent-ink)}.st.ok{background:var(--jade);color:#fff}
+.tf{display:flex;gap:8px;max-width:none;margin-bottom:14px}.tl{list-style:none;padding:0;margin:0}.tl li{display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:8px}
+@media (max-width:760px){.dash{grid-template-columns:1fr}.sd{position:fixed;bottom:0;left:0;right:0;flex-direction:row;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:2;gap:0}.lg2{display:none}.sd button{flex-direction:column;gap:2px;font-size:11px;padding:6px 4px;text-align:center}#lo{margin-top:0}.mn{padding:20px 16px 96px}.tf{flex-direction:column}}
+@media (max-width:560px){.chat.pop{right:12px;left:12px;width:auto;bottom:calc(12px + env(safe-area-inset-bottom,0px))}.nudge{display:none}.lc{margin:4vh 16px;padding:24px}}
+@media (prefers-reduced-motion:reduce){.mt{animation:none}#pl span,.pane.on{animation:none}}
+@media (prefers-reduced-motion:reduce){.wa::after{animation:none}}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+@media (max-width:860px){.stats{grid-template-columns:1fr 1fr}}
+@media (max-width:860px){
+.hero .wrap,.contact{grid-template-columns:1fr}
+.grid,.price,.steps{grid-template-columns:1fr}
+.card.lead{grid-column:auto}
+nav{display:none;position:absolute;top:60px;left:0;right:0;background:var(--hero);flex-direction:column;align-items:flex-start;padding:18px 20px;gap:14px}header.open nav{display:flex}.mb{display:inline-grid}.g4{grid-template-columns:1fr}
+section{padding:52px 0}
+}
+@media (max-width:1024px){.hero h1{font-size:clamp(32px,5vw,48px)}.wrap{padding:0 24px}}
+@media (min-width:600px) and (max-width:860px){.grid,.g4,.price,.steps{grid-template-columns:1fr 1fr}.card.lead{grid-column:span 2}}
+@media (max-width:480px){body{font-size:16px}.hero{padding:40px 0 48px}.hero p{font-size:17px}section{padding:44px 0}.btn{padding:11px 18px}.cta .btn{flex:1 1 100%;text-align:center}.fab{width:48px;height:48px;right:14px}.stats{gap:12px}.stat b{font-size:32px}.out{padding:14px 16px}}
+@media (min-width:1400px){.wrap{max-width:1240px}body{font-size:18px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"/></symbol>
+<symbol id="i-brief" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 13h20"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 8l-2 6-6 2 2-6z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-lang" viewBox="0 0 24 24"><path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></symbol>
+<symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+<symbol id="i-wa" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V5M9 13v1M15 13v1M2 14h2M20 14h2"/><circle cx="12" cy="3.5" r="1.5"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+</defs></svg>
+<div id="pl" aria-hidden="true"><span>MegaMind<b>AI</b></span></div>
+<div id="bar"></div><header><div class="wrap">
+<a class="logo" href="#top">MegaMind<span>AI</span></a>
+<nav id="nv"><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#process">Process</a><a href="#faq">FAQ</a><button class="nb" id="lg" type="button"><svg class="i"><use href="#i-user"/></svg>Client login</button><a href="#contact" class="btn">Get a quote</a><button class="ib" id="th" aria-label="Toggle dark mode"><svg class="i"><use href="#i-sun"/></svg></button></nav><button class="ib mb" id="mb" aria-label="Open menu" aria-expanded="false"><svg class="i"><use href="#i-menu"/></svg></button>
+</div></header>
+
+<main id="top">
+<div class="hero"><canvas id="net" aria-hidden="true"></canvas><div class="wrap">
+<div>
+<h1>AI that answers your customers, writes your content and runs your routine work.</h1>
+<p>MegaMind AI Limited Company builds <b class="tw"><span id="tw"></span></b> for businesses in Bangladesh, in Bangla and English.</p>
+<div class="cta"><a class="btn" href="#contact">Get a free consultation</a><a class="btn alt" href="#services">See all services</a><button class="btn alt" id="tryb" type="button">Try the AI chatbot</button></div>
+</div>
+<div class="chat" aria-label="Live chatbot demo">
+<div class="chat-top"><span class="dot"></span>MegaMind assistant (demo)</div>
+<div class="msgs" id="msgs" aria-live="polite"><div class="m bot">আসসালামু আলাইকুম! I’m a demo bot. Ask me anything below.</div></div>
+<div class="chips" id="chips"></div>
+<form class="cf" id="cf"><input id="ci" placeholder="Type a question…" aria-label="Ask the demo bot"><button class="btn" type="submit">Send</button></form>
+</div>
+</div></div>
+
+<div class="mq" aria-hidden="true"><div class="mt"><span>Python</span><span>PyTorch</span><span>LLM APIs</span><span>RAG</span><span>NLP</span><span>WhatsApp API</span><span>PostgreSQL</span><span>Docker</span><span>Cloud hosting</span></div></div>
+<div class="stat-row"><div class="wrap stats"><div class="stat"><b data-to="24" data-s="/7">0</b><span>Always-on replies</span></div><div class="stat"><b data-to="2">0</b><span>Languages: Bangla and English</span></div><div class="stat"><b data-to="7" data-s=" days">0</b><span>To a working demo</span></div><div class="stat"><b data-to="6">0</b><span>AI service lines</span></div></div></div>
+<section id="services"><div class="wrap">
+<div class="sec-h"><h2>What we build with AI</h2><p>Start with one service. Add more when it pays for itself.</p></div>
+<div class="grid">
+<div class="card lead"><span class="tag">Most requested</span><h3>Chatbots and automation</h3>
+<ul><li>Website, Messenger and WhatsApp chatbots in Bangla and English</li><li>Customer support and sales assistant bots</li><li>Voice bots and call-flow automation</li><li>Workflow automation between your tools</li></ul></div>
+<div class="card"><h3>Content and creative</h3><ul><li>Blog, ad copy and product descriptions</li><li>AI images, banners and short videos</li><li>Bangla voice-over</li><li>Social media planning and auto-posting</li></ul></div>
+<div class="card"><h3>Data and analytics</h3><ul><li>Data cleaning, labeling and annotation</li><li>Bangla training datasets</li><li>Sales dashboards and forecasting</li><li>Invoice, NID and form data extraction</li></ul></div>
+<div class="card"><h3>Custom AI development</h3><ul><li>Answers from your own documents (RAG)</li><li>Model fine-tuning</li><li>Recommendation engines</li><li>Bangla speech-to-text, computer vision</li></ul></div>
+<div class="card"><h3>Business solutions</h3><ul><li>CV screening and HR tools</li><li>Accounting and invoice automation</li><li>Tutor bots and quiz generators</li><li>Fraud detection and risk scoring</li></ul></div>
+<div class="card"><h3>Digital and consulting</h3><ul><li>Websites and apps with AI features</li><li>AI-assisted SEO and marketing</li><li>Team training and workshops</li><li>AI API access for developers</li></ul></div>
+</div></div></section>
+
+<section id="solutions" class="band"><div class="wrap"><div class="sec-h"><h2>Solutions for your industry</h2><p>Pick your sector to see what we can build.</p></div>
+<div class="tabs" role="tablist"><button role="tab" aria-selected="true" aria-controls="p0" id="t0">Banking</button><button role="tab" aria-selected="false" aria-controls="p1" id="t1">E-commerce</button><button role="tab" aria-selected="false" aria-controls="p2" id="t2">Education</button><button role="tab" aria-selected="false" aria-controls="p3" id="t3">Healthcare</button></div>
+<div class="pane on" role="tabpanel" id="p0" aria-labelledby="t0"><h3>Banking and finance</h3><ul class="ck"><li><svg class="i"><use href="#i-check"/></svg>Product FAQ bots for accounts, cards and loans</li><li><svg class="i"><use href="#i-check"/></svg>Bangla and English intent datasets for chatbot training</li><li><svg class="i"><use href="#i-check"/></svg>Smart routing of customer queries to the right team</li></ul></div>
+<div class="pane" role="tabpanel" id="p1" aria-labelledby="t1"><h3>E-commerce and retail</h3><ul class="ck"><li><svg class="i"><use href="#i-check"/></svg>Order tracking and courier update bots</li><li><svg class="i"><use href="#i-check"/></svg>Product recommendations from browsing and purchase history</li><li><svg class="i"><use href="#i-check"/></svg>AI product descriptions and banners in bulk</li></ul></div>
+<div class="pane" role="tabpanel" id="p2" aria-labelledby="t2"><h3>Education and training</h3><ul class="ck"><li><svg class="i"><use href="#i-check"/></svg>Tutor bots that answer student questions in Bangla</li><li><svg class="i"><use href="#i-check"/></svg>Quiz and worksheet generators for teachers</li><li><svg class="i"><use href="#i-check"/></svg>Admission assistants that handle common inquiries</li></ul></div>
+<div class="pane" role="tabpanel" id="p3" aria-labelledby="t3"><h3>Healthcare administration</h3><ul class="ck"><li><svg class="i"><use href="#i-check"/></svg>Appointment booking and reminder bots</li><li><svg class="i"><use href="#i-check"/></svg>Summaries of reports for front-desk staff</li><li><svg class="i"><use href="#i-check"/></svg>Patient inquiry handling outside office hours</li></ul></div>
+</div></section>
+<section id="why"><div class="wrap"><div class="sec-h"><h2>Why companies pick MegaMind</h2></div>
+<div class="grid g4">
+<div class="card"><span class="ico"><svg class="i"><use href="#i-lang"/></svg></span><h3>Bangla first</h3><ul><li>Bots that understand Bangla, English and Banglish</li></ul></div>
+<div class="card"><span class="ico"><svg class="i"><use href="#i-clock"/></svg></span><h3>Demo in days</h3><ul><li>See a working prototype before you commit</li></ul></div>
+<div class="card"><span class="ico"><svg class="i"><use href="#i-shield"/></svg></span><h3>Secure by default</h3><ul><li>HTTPS, access control and regular backups</li></ul></div>
+<div class="card"><span class="ico"><svg class="i"><use href="#i-zap"/></svg></span><h3>Local integrations</h3><ul><li>bKash, Nagad, courier and SMS on request</li></ul></div>
+</div></div></section>
+<section id="pricing" class="band"><div class="wrap">
+<div class="sec-h"><h2>Simple packages</h2><p>Sample prices in BDT. Final quote depends on your scope.</p></div>
+<div class="price">
+<div class="plan"><h3>Starter</h3><div class="amt">৳15,000<small> one-time</small></div><ul><li>Website chatbot with 30 FAQs</li><li>Bangla + English</li><li>7 days of support</li></ul><a class="btn alt" style="color:var(--ink)" href="#contact">Choose Starter</a></div>
+<div class="plan pop"><h3>Business</h3><div class="amt">৳45,000<small> setup + monthly care</small></div><ul><li>Chatbot on website, Messenger and WhatsApp</li><li>Order and lead capture</li><li>Monthly report and updates</li></ul><a class="btn" href="#contact">Choose Business</a></div>
+<div class="plan"><h3>Custom</h3><div class="amt">Quote<small> per project</small></div><ul><li>RAG, datasets, dashboards, custom models</li><li>Dedicated engineer</li><li>Service agreement</li></ul><a class="btn alt" style="color:var(--ink)" href="#contact">Talk to us</a></div>
+</div></div></section>
+
+<section id="roi"><div class="wrap"><div class="sec-h"><h2>See what automation could save you</h2><p>Move the sliders. This is an estimate that assumes a bot handles about 60% of repetitive work.</p></div>
+<div class="calc"><label>Hours per week your team spends on repetitive replies: <b id="hv">40</b><input type="range" id="h" min="5" max="200" value="40"></label><label>Cost per hour (৳): <b id="cv2">250</b><input type="range" id="c" min="100" max="1000" step="50" value="250"></label><div class="out">Estimated saving per month<strong id="sv">৳0</strong></div></div></div></section>
+<section id="process"><div class="wrap">
+<div class="sec-h"><h2>How a project runs</h2></div>
+<ol class="steps">
+<li><b>Discover</b><span>A free call to find what AI can save you.</span></li>
+<li><b>Prototype</b><span>A working demo within days, not weeks.</span></li>
+<li><b>Launch</b><span>We connect it to your site, pages and tools.</span></li>
+<li><b>Improve</b><span>Monthly review of results and fixes.</span></li>
+</ol></div></section>
+
+<section id="faq"><div class="wrap"><div class="sec-h"><h2>Questions we hear often</h2></div><div style="max-width:760px">
+<details name="faq"><summary>Do I need technical knowledge?<svg class="i"><use href="#i-plus"/></svg></summary><p>No. We set everything up and train your team in a short session.</p></details>
+<details name="faq"><summary>Can the bot answer in Bangla?<svg class="i"><use href="#i-plus"/></svg></summary><p>Yes. It handles Bangla, English and mixed Banglish messages.</p></details>
+<details name="faq"><summary>Can it connect to WhatsApp and Messenger?<svg class="i"><use href="#i-plus"/></svg></summary><p>Yes. One bot can serve your website, WhatsApp and Messenger together.</p></details>
+<details name="faq"><summary>What happens after launch?<svg class="i"><use href="#i-plus"/></svg></summary><p>We review results every month, fix wrong answers and add new questions.</p></details>
+<details name="faq"><summary>How do I pay?<svg class="i"><use href="#i-plus"/></svg></summary><p>Bank transfer, bKash or Nagad. We issue an invoice for every payment.</p></details>
+</div></div></section>
+<section id="contact" class="band"><div class="wrap contact">
+<div class="sec-h"><h2>Tell us what you need</h2><p>We reply within one working day.</p>
+<ul class="ct"><li><svg class="i"><use href="#i-mail"/></svg>hello@megamind.ai</li><li><svg class="i"><use href="#i-phone"/></svg>+880 1XXX-XXXXXX</li><li><svg class="i"><use href="#i-pin"/></svg>Dhaka, Bangladesh</li><li><svg class="i"><use href="#i-clock"/></svg>Reply within one working day</li></ul></div>
+<form id="f">
+<label>Your name<input name="n" required autocomplete="name"></label>
+<label>Phone or email<input name="c" required></label>
+<label>Service<select name="s"><option>Chatbot and automation</option><option>Content and creative</option><option>Data and analytics</option><option>Custom AI development</option><option>Business solutions</option><option>Consulting</option></select></label>
+<label>What do you want to achieve?<textarea name="m" rows="4"></textarea></label>
+<button class="btn" type="submit">Send request</button>
+<p class="note" id="fm" role="status"></p>
+</form>
+</div></section>
+</main>
+
+<div id="app" role="dialog" aria-modal="true" aria-label="Client portal">
+<div id="lv" class="lc"><button class="ib xc2" id="lx" aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button><h2 id="lt">Client login</h2><p class="note">Demo mode: accounts are saved only in this browser. A live portal needs a server.</p>
+<form id="lf"><label id="nl" hidden>Full name<input id="ln" autocomplete="name"></label><label>Email<input id="le2" type="email" required autocomplete="email"></label><label>Password<input id="lp" type="password" required minlength="6" autocomplete="current-password"></label><button class="btn" type="submit" id="ls">Sign in</button><p class="note" id="lr" role="alert"></p></form>
+<p class="note"><a href="#" id="sw">New client? Create an account</a></p></div>
+<div id="dv" class="dash" hidden>
+<aside class="sd"><b class="lg2">MegaMind<span>AI</span></b>
+<button data-v="o" class="on"><svg class="i"><use href="#i-grid"/></svg>Overview</button><button data-v="p"><svg class="i"><use href="#i-brief"/></svg>Projects</button><button data-v="i"><svg class="i"><use href="#i-file"/></svg>Invoices</button><button data-v="s"><svg class="i"><use href="#i-chat"/></svg>Support</button><button id="bk"><svg class="i"><use href="#i-globe"/></svg>Website</button><button id="lo"><svg class="i"><use href="#i-logout"/></svg>Log out</button></aside>
+<main class="mn"><h2 id="wl">Welcome</h2><p class="note">Sample data for demonstration.</p>
+<div class="vw on" id="v-o"><div class="kp"><div class="k"><b data-t="3">0</b><span>Active projects</span></div><div class="k"><b data-t="2">0</b><span>Open tickets</span></div><div class="k"><b data-t="1">0</b><span>Invoice due</span></div><div class="k"><b data-t="1240">0</b><span>Bot conversations</span></div></div><h3>Chatbot conversations, last 7 days</h3><div class="bars" id="br"></div></div>
+<div class="vw" id="v-p"><div class="pr"><b>Website chatbot (Bangla + English)</b><span>70%</span><div class="pg"><i data-w="70"></i></div></div><div class="pr"><b>Customer FAQ dataset</b><span>45%</span><div class="pg"><i data-w="45"></i></div></div><div class="pr"><b>WhatsApp automation</b><span>20%</span><div class="pg"><i data-w="20"></i></div></div></div>
+<div class="vw" id="v-i"><div class="tw"><table><tr><th>Invoice</th><th>Date</th><th>Amount</th><th>Status</th></tr><tr><td>INV-1001</td><td>05 Oct 2026</td><td>৳15,000</td><td><em class="st ok">Paid</em></td></tr><tr><td>INV-1002</td><td>01 Nov 2026</td><td>৳45,000</td><td><em class="st">Due</em></td></tr></table></div><p class="note">Online payment (bKash, Nagad, card) is coming soon.</p></div>
+<div class="vw" id="v-s"><form id="tf" class="tf"><input id="tx" placeholder="Describe your issue" aria-label="Describe your issue" required><button class="btn" type="submit">Send ticket</button></form><ul class="tl" id="tl"><li><span>Update FAQ answers for loan products</span><em class="st">Open</em></li><li><span>Add Messenger channel</span><em class="st ok">Done</em></li></ul></div>
+</main></div></div>
+<button class="fab cb" id="cb" aria-label="Open AI chatbot" aria-expanded="false"><svg class="i"><use href="#i-bot"/></svg></button><span class="nudge" id="nd">Chat with our AI</span>
+<a class="fab wa" href="https://wa.me/8801XXXXXXXXX" aria-label="Chat on WhatsApp"><svg class="i"><use href="#i-wa"/></svg></a>
+<button class="fab up" id="up" aria-label="Back to top"><svg class="i"><use href="#i-up"/></svg></button>
+<footer><div class="wrap">
+<div class="fc"><b>MegaMind AI Limited Company</b><br>AI chatbots, automation and data services for Bangladesh.<br>© 2026 All rights reserved.</div><div class="fc"><b>Explore</b><br><a href="#services">Services</a><br><a href="#solutions">Solutions</a><br><a href="#pricing">Pricing</a><br><a href="#faq">FAQ</a></div><div class="fc"><b>Contact</b><br>hello@megamind.ai<br>Dhaka, Bangladesh<br><a href="#contact">Get a quote</a></div>
+<div>RJSC Reg. No: ______ · Trade License: ______ · TIN: ______</div>
+</div></footer>
+
+<script>
+var R=[
+["What can you do?","We build chatbots, automation, content tools, datasets and custom AI. Pick a service in the Services section above."],
+["বাংলায় কাজ করেন?","জি, আমাদের সব চ্যাটবট বাংলা, ইংরেজি এবং মিশ্র ভাষায় (Banglish) কাজ করে।"],
+["How much does it cost?","Chatbots start from ৳15,000. Custom projects get a quote after a free call."],
+["How long to launch?","A basic chatbot can go live in about a week. Custom AI takes 3 to 8 weeks."]
+];
+var msgs=document.getElementById("msgs"),chips=document.getElementById("chips");
+function add(t,c){var d=document.createElement("div");d.className="m "+c;d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight}
+R.forEach(function(r){var b=document.createElement("button");b.className="chip";b.type="button";b.textContent=r[0];
+b.onclick=function(){say(r[0],r[1])};chips.appendChild(b)});
+document.getElementById("f").addEventListener("submit",function(e){e.preventDefault();
+var f=e.target,body="Name: "+f.n.value+"\nContact: "+f.c.value+"\nService: "+f.s.value+"\n\n"+f.m.value;
+location.href="mailto:hello@megamind.ai?subject="+encodeURIComponent("Quote request: "+f.s.value)+"&body="+encodeURIComponent(body);
+document.getElementById("fm").innerHTML='<svg class="i" style="color:var(--jade);vertical-align:-3px"><use href="#i-check"/></svg> Thanks, '+f.n.value.replace(/[<>&]/g,"")+'. Your email app should open with the request ready to send.'});
+var rm=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function say(q,a){add(q,"me");var t=document.createElement("div");t.className="m bot typing";t.innerHTML="<i></i><i></i><i></i>";msgs.appendChild(t);msgs.scrollTop=msgs.scrollHeight;setTimeout(function(){t.className="m bot";t.textContent=a;msgs.scrollTop=msgs.scrollHeight},rm?0:900)}
+document.getElementById("cf").addEventListener("submit",function(e){e.preventDefault();var i=document.getElementById("ci"),q=i.value.trim();if(!q)return;i.value="";var l=q.toLowerCase(),a="Good question. Leave your contact below and our team will reply within one working day.";
+if(/price|cost|দাম|টাকা|taka|koto/.test(l))a=R[2][1];else if(/bangla|বাংলা|bengali/.test(l))a=R[1][1];else if(/time|week|day|দিন|kobe|long/.test(l))a=R[3][1];else if(/whatsapp|messenger|facebook/.test(l))a="Yes, we connect your bot to WhatsApp, Messenger and your website.";else if(/bot|chat/.test(l))a=R[0][1];say(q,a)});
+(function(){var cv=document.getElementById("net"),cx=cv.getContext("2d"),P=[],mx=-999,my=-999,W,H,vis=true,i;
+function rs(){var r=cv.parentNode.getBoundingClientRect();W=cv.width=r.width;H=cv.height=r.height}rs();addEventListener("resize",rs);
+for(i=0;i<(innerWidth<700?32:64);i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6});
+cv.parentNode.addEventListener("mousemove",function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top});
+cv.parentNode.addEventListener("mouseleave",function(){mx=my=-999});
+new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(cv);
+function draw(){if(vis){cx.clearRect(0,0,W,H);P.forEach(function(p,a){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+var dx=mx-p.x,dy=my-p.y,d=Math.hypot(dx,dy);if(d<150){p.x+=dx*.012;p.y+=dy*.012;cx.strokeStyle="rgba(242,169,59,"+(1-d/150)+")";cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(mx,my);cx.stroke()}
+for(var b=a+1;b<P.length;b++){var q=P[b],e=Math.hypot(p.x-q.x,p.y-q.y);if(e<120){cx.strokeStyle="rgba(197,210,232,"+(.35*(1-e/120))+")";cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(q.x,q.y);cx.stroke()}}
+cx.fillStyle="rgba(242,169,59,.85)";cx.beginPath();cx.arc(p.x,p.y,2,0,6.3);cx.fill()})}
+if(!rm)requestAnimationFrame(draw)}draw();
+var tw=document.getElementById("tw"),T=["chatbots","automation","Bangla datasets","content tools","custom AI"],wi=0,ci=0,dl=false;
+function tick(){var w=T[wi];tw.textContent=w.slice(0,ci);if(!dl&&ci==w.length){dl=true;return setTimeout(tick,1400)}if(dl&&ci==0){dl=false;wi=(wi+1)%T.length}ci+=dl?-1:1;setTimeout(tick,dl?40:80)}
+if(rm)tw.textContent=T[0];else tick();
+var bar=document.getElementById("bar");addEventListener("scroll",function(){var s=document.documentElement;bar.style.width=(scrollY/(s.scrollHeight-innerHeight)*100)+"%"},{passive:true});
+document.querySelectorAll(".card,.plan").forEach(function(c){c.addEventListener("mousemove",function(e){var r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px")})});
+function count(el){var to=+el.dataset.to,s=el.dataset.s||"",t0=performance.now();(function f(t){var k=Math.min((t-t0)/1400,1);el.textContent=Math.round(to*(1-Math.pow(1-k,3)))+s;if(k<1)requestAnimationFrame(f)})(t0)}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;el.classList.add("in");setTimeout(function(){el.style.transitionDelay=""},900);var n=el.querySelector("[data-to]");if(n)count(n);io.unobserve(el)})},{threshold:.15});
+document.querySelectorAll(".card,.plan,.steps li,.calc,.stat").forEach(function(el,k){el.classList.add("rv");el.style.transitionDelay=(k%3)*90+"ms";io.observe(el)});
+var h=document.getElementById("h"),c=document.getElementById("c"),sv=document.getElementById("sv"),cur=0,tg=0;
+function step(){cur+=(tg-cur)*.2;if(Math.abs(tg-cur)<1)cur=tg;sv.textContent="৳"+Math.round(cur).toLocaleString("en-IN");if(cur!==tg)requestAnimationFrame(step)}
+function upd(){document.getElementById("hv").textContent=h.value;document.getElementById("cv2").textContent=c.value;tg=Math.round(h.value*4.33*c.value*.6);rm?(cur=tg,step()):step()}
+h.oninput=c.oninput=upd;upd()})();
+(function(){function ic(n){return '<span class="ico"><svg class="i"><use href="#i-'+n+'"/></svg></span>'}
+[["#services .card",["chat","pen","chart","cpu","brief","globe"]],[".stat",["clock","lang","zap","cpu"]],[".steps li",["compass","cpu","zap","chart"]]].forEach(function(g){document.querySelectorAll(g[0]).forEach(function(e,i){e.insertAdjacentHTML("afterbegin",ic(g[1][i]))})});
+var root=document.documentElement,th=document.getElementById("th"),hd=document.querySelector("header"),mb=document.getElementById("mb"),up=document.getElementById("up");
+function dark(){return root.dataset.theme?root.dataset.theme=="dark":matchMedia("(prefers-color-scheme: dark)").matches}
+function ti(){th.querySelector("use").setAttribute("href",dark()?"#i-sun":"#i-moon")}ti();
+th.onclick=function(){root.dataset.theme=dark()?"light":"dark";ti()};
+function menu(o){hd.classList.toggle("open",o);mb.setAttribute("aria-expanded",o);mb.querySelector("use").setAttribute("href",o?"#i-x":"#i-menu")}
+mb.onclick=function(){menu(!hd.classList.contains("open"))};
+document.querySelectorAll("#nv a").forEach(function(a){a.addEventListener("click",function(){menu(false)})});
+addEventListener("scroll",function(){up.classList.toggle("show",scrollY>600)},{passive:true});
+up.onclick=function(){scrollTo({top:0,behavior:rm?"auto":"smooth"})}})();
+(function(){var mt=document.querySelector(".mt");mt.innerHTML+=mt.innerHTML;
+var tb=document.querySelectorAll(".tabs button"),pn=document.querySelectorAll(".pane");tb.forEach(function(b,i){b.onclick=function(){tb.forEach(function(x,j){x.setAttribute("aria-selected",i==j);pn[j].classList.toggle("on",i==j)})}});
+var L=document.querySelectorAll("#nv a[href^='#']"),so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)L.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")=="#"+e.target.id)})})},{rootMargin:"-45% 0px -50% 0px"});
+["services","pricing","process","faq","contact"].forEach(function(id){so.observe(document.getElementById(id))});
+function hp(){var p=document.getElementById("pl");if(!p)return;p.classList.add("gone");setTimeout(function(){p.remove()},700)}
+addEventListener("load",function(){setTimeout(hp,rm?0:600)});if(document.readyState=="complete")setTimeout(hp,600)})();
+(function(){var $=function(i){return document.getElementById(i)},mem={};
+var chat=document.querySelector('.chat'),cb=$('cb'),nd=$('nd');chat.classList.add('pop');chat.setAttribute('role','dialog');chat.setAttribute('aria-label','AI chatbot demo');document.body.appendChild(chat);
+chat.querySelector('.chat-top').insertAdjacentHTML('beforeend','<button class="ib xc" type="button" aria-label="Close chat"><svg class="i"><use href="#i-x"/></svg></button>');
+function tg(o){chat.classList.toggle('open',o);cb.setAttribute('aria-expanded',o);cb.querySelector('use').setAttribute('href',o?'#i-x':'#i-bot');nd.classList.remove('show');if(o)$('ci').focus()}
+cb.onclick=function(){tg(!chat.classList.contains('open'))};$('tryb').onclick=function(){tg(true)};chat.querySelector('.xc').onclick=function(){tg(false)};
+addEventListener('keydown',function(e){if(e.key=='Escape'){tg(false);show(false)}});
+setTimeout(function(){if(!chat.classList.contains('open'))nd.classList.add('show')},4500);setTimeout(function(){nd.classList.remove('show')},12000);
+function ls(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k))||mem[k]||null;localStorage.setItem(k,JSON.stringify(v))}catch(e){if(v===undefined)return mem[k]||null}mem[k]=v}
+async function hs(s){try{var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}catch(e){return btoa(unescape(encodeURIComponent(s)))}}
+var app=$('app'),lv=$('lv'),dv=$('dv'),reg=false;
+function show(o){app.classList.toggle('on',o);document.body.style.overflow=o?'hidden':''}
+function view(){var s=ls('mm_s');lv.hidden=!!s;dv.hidden=!s;if(s){$('wl').textContent='Welcome, '+s.name;fill()}}
+function fill(){document.querySelectorAll('[data-t]').forEach(function(el){var to=+el.dataset.t,t0=performance.now();(function f(t){var k=Math.min((t-t0)/1000,1);el.textContent=Math.round(to*k).toLocaleString('en-IN');if(k<1)requestAnimationFrame(f)})(t0)});
+var D=[32,45,38,60,52,41,66],N=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];$('br').innerHTML=D.map(function(d,i){return '<div class="b"><em>'+d+'</em><i data-h="'+d+'"></i><span>'+N[i]+'</span></div>'}).join('');
+setTimeout(function(){document.querySelectorAll('.b i').forEach(function(i){i.style.height=(i.dataset.h*1.1)+'%'});document.querySelectorAll('.pg i').forEach(function(i){i.style.width=i.dataset.w+'%'})},60)}
+$('lg').onclick=function(){document.querySelector('header').classList.remove('open');show(true);view()};
+$('lx').onclick=function(){show(false)};$('bk').onclick=function(){show(false)};
+$('sw').onclick=function(e){e.preventDefault();reg=!reg;$('nl').hidden=!reg;$('lt').textContent=reg?'Create account':'Client login';$('ls').textContent=reg?'Create account':'Sign in';this.textContent=reg?'Have an account? Sign in':'New client? Create an account';$('lr').textContent=''};
+$('lf').onsubmit=async function(e){e.preventDefault();var em=$('le2').value.trim().toLowerCase(),pw=$('lp').value,U=ls('mm_u')||{},r=$('lr');
+if(reg){var nm=$('ln').value.trim();if(!nm){r.textContent='Enter your name.';return}if(U[em]){r.textContent='This email already has an account. Sign in instead.';return}U[em]={name:nm,h:await hs(pw)};ls('mm_u',U)}
+else if(!U[em]||U[em].h!==await hs(pw)){r.textContent='Email or password is incorrect.';return}
+ls('mm_s',{email:em,name:U[em].name});this.reset();r.textContent='';view()};
+$('lo').onclick=function(){ls('mm_s',null);view()};
+var sb=document.querySelectorAll('.sd [data-v]');sb.forEach(function(b){b.onclick=function(){sb.forEach(function(x){x.classList.toggle('on',x==b)});document.querySelectorAll('.vw').forEach(function(v){v.classList.toggle('on',v.id=='v-'+b.dataset.v)});fill()}});
+$('tf').onsubmit=function(e){e.preventDefault();var li=document.createElement('li');li.innerHTML='<span></span><em class="st">Open</em>';li.firstChild.textContent=$('tx').value;$('tl').prepend(li);$('tx').value=''}})();
+</script>
+</body>
+</html>
